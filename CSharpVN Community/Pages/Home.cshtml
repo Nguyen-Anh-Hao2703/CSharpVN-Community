@@ -1,0 +1,25 @@
+﻿@page
+@model CSharpVN_Community.Pages.HomeModel
+@{
+    ViewData["Title"] = "Trang chủ Cộng đồng CSharpVN";
+}
+
+<div class="container mt-4">
+    <h2>CSharp VN là gì?</h2>
+    <p>
+        CSharp VN là một ngôn ngữ lập trình dựa trên nền tảng C#.
+        Đây là phiên bản C# được Việt hóa để giúp các bạn học sinh tiếp cận lập trình dễ dàng hơn.
+    </p>
+
+    <hr />
+
+    <div class="mt-3">
+        <label for="btnList" class="form-label d-block">
+            Nhấp vào nút bên dưới để xem các package của hệ sinh thái CSharp VN
+        </label>
+
+        <a id="btnList" asp-page="/List" class="btn btn-primary">
+            Đến danh sách Package
+        </a>
+    </div>
+</div>

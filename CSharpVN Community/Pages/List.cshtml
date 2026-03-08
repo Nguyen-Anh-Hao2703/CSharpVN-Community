@@ -1,0 +1,33 @@
+﻿@page
+@using CSharpVN_Web.Pages  @* Thay tên này đúng với Namespace trong file .cs của bạn *@
+@model IndexModel
+@{
+    ViewData["Title"] = "Hệ sinh thái CSharpVN";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Thư viện CSharpVN</h1>
+    <p>Chào mừng Hào đến với kho tài nguyên ngôn ngữ lập trình thuần Việt.</p>
+</div>
+
+<hr />
+
+<div class="row">
+    @foreach (var pkg in Model.DanhSachPackages)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div style="font-size: 3rem;">@pkg.Icon</div>
+                    <h5 class="card-title">@pkg.Ten</h5>
+                    <p class="card-text">@pkg.MoTa</p>
+                </div>
+                <div class="card-footer bg-white border-0 text-center">
+                    <a href="@pkg.LinkNuget" target="_blank" class="btn btn-primary">
+                        Xem trên NuGet
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

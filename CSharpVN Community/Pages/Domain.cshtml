@@ -1,0 +1,16 @@
+﻿@page
+@model CSharpVN_Community.Pages.DomainModel
+@{
+    ViewData["Title"] = "Trang đóng góp";
+}
+<h1>@ViewData["Title"]</h1>
+<div class="Domain">
+    <form method="post">
+        <div class="form-group">
+            <label for="txtCode">Mã nguồn của bạn:</label>
+            <textarea id="txtCode" name="CodeHao" class="form-control" rows="10"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">Gửi đóng góp</button>
+    </form>
+</div>
