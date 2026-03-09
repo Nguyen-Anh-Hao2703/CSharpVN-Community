@@ -1,0 +1,26 @@
+﻿@page
+@model CSharpVN_Community.Admin.LoginModel
+@{
+    ViewData["Title"] = "Admin Login";
+}
+<div class="container" style="max-width: 400px; margin-top: 100px; text-align: center;">
+    <div style="background: #1e1e1e; padding: 30px; border-radius: 15px; border: 2px solid #00ff00; box-shadow: 0 0 20px #00ff00;">
+        <h3 style="color: #00ff00; font-family: monospace;">🔐 ADMIN ACCESS</h3>
+        <p style="color: #888; font-size: 0.8rem;">Vui lòng xác minh quyền sở hữu máy chủ</p>
+
+        <form method="post">
+            <input type="password" name="AdminPassword" placeholder="Nhập mật mã..."
+                   style="width: 100%; padding: 10px; margin-bottom: 20px; background: #000; border: 1px solid #00ff00; color: #00ff00; text-align: center; border-radius: 5px;">
+
+            <button type="submit" style="background: #00ff00; color: #000; border: none; padding: 10px 30px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%;">
+                ĐĂNG NHẬP
+            </button>
+        </form>
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <p style="color: #ff0000; margin-top: 15px; font-size: 0.9rem;">⚠️ @Model.ErrorMessage</p>
+        }
+    </div>
+</div>
+

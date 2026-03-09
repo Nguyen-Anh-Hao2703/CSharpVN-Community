@@ -1,0 +1,181 @@
+﻿@page
+@model CSharpVN_Community.Pages.AccessDeniedModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>HỆ THỐNG PHÒNG THỦ - CSHARPVN</title>
+    <style>
+        body {
+            background-color: black;
+            color: #ff0000;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            border: 2px solid #ff0000;
+            padding: 50px;
+            box-shadow: 0 0 30px #ff0000;
+            max-width: 80%;
+            background-color: rgba(20, 0, 0, 0.9);
+            z-index: 1;
+        }
+
+        /* Hiệu ứng đánh chữ (Typing Effect) */
+        .typing {
+            display: inline-block;
+            overflow: hidden;
+            border-right: .15em solid orange;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing-anim 2s steps(30, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @@keyframes typing-anim {
+            from
+
+        {
+            width: 0;
+        }
+
+        to {
+            width: 100%;
+        }
+
+        }
+
+        @@keyframes blink-caret {
+            from, to
+
+        {
+            border-color: transparent;
+        }
+
+        50% {
+            border-color: orange;
+        }
+
+        }
+
+        /* Hiệu ứng rung màn hình khi sắp hết giờ */
+        .shake {
+            animation: shake-anim 0.1s infinite;
+        }
+
+        @@keyframes shake-anim {
+            0%
+
+        {
+            transform: translate(1px, 1px);
+        }
+
+        50% {
+            transform: translate(-1px, -1px);
+        }
+
+        100% {
+            transform: translate(1px, -1px);
+        }
+
+        }
+
+        /* Màn hình xanh BSOD */
+        #bsod {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0078d7;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            padding: 100px;
+            z-index: 9999;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-content">
+        <h1 class="typing" style="font-size: 3rem; margin-bottom: 20px;">⚠️ ACCESS DENIED</h1>
+
+        <hr style="border: 1px solid #ff0000; margin-bottom: 20px;">
+
+        <p style="font-size: 1.2rem; line-height: 1.8;">
+            PHÁT HIỆN TRUY CẬP BẤT THƯỜNG TỪ IP:<br>
+            <span class="typing" style="color: yellow; font-weight: bold; border-right-color: yellow;">@Model.ClientIP</span><br>
+
+            <span style="color: #aaa;">HỆ THỐNG ĐÃ GHI LẠI NHẬT KÝ VÀ BÁO CÁO QUẢN TRỊ VIÊN.</span><br>
+            VUI LÒNG RỜI KHỎI TRANG WEB NGAY LẬP TỨC!
+        </p>
+
+        <div id="countdown" style="font-size: 2rem; margin-top: 30px; font-weight: bold; color: white; background: #330000; padding: 10px;">
+            TỰ KHÓA TRONG: 5s
+        </div>
+    </div>
+
+    <div id="bsod">
+        <span style="font-size: 10rem;">:(</span>
+        <h1 style="font-size: 2.5rem; font-weight: normal; margin-top: 20px;">
+            Your PC ran into a problem and needs to restart.
+        </h1>
+        <p style="font-size: 1.5rem; margin-top: 30px;" id="percent">0% complete</p>
+        <div style="margin-top: 50px; line-height: 1.6;">
+            <p>For more information about this issue and possible fixes, visit https://www.windows.com/stopcode</p>
+            <p>Stop code: <b style="color: yellow;">VIOLATION_PENAL_CODE_ARTICLE_289</b></p>
+        </div>
+    </div>
+
+    <script>
+        let count = 5;
+        let pc = 0;
+        const mainContent = document.getElementById('main-content');
+        const countdownEl = document.getElementById('countdown');
+        const bsodEl = document.getElementById('bsod');
+        const percentEl = document.getElementById('percent');
+
+        const timer = setInterval(() => {
+            count--;
+            countdownEl.innerText = "HỆ THỐNG TỰ KHÓA TRONG: " + count + "s";
+
+            // Khi còn 1 giây thì bắt đầu rung màn hình
+            if (count === 1) {
+                mainContent.classList.add('shake');
+            }
+
+            if (count <= 0) {
+                clearInterval(timer);
+
+                // Hiện màn hình xanh
+                bsodEl.style.display = 'block';
+
+                // Chạy phần trăm giả lập
+                const load = setInterval(() => {
+                    pc += 10;
+                    percentEl.innerText = pc + "% complete";
+
+                    if (pc >= 100) {
+                        clearInterval(load);
+                        // Dừng thêm 1 giây ở mức 100% rồi mới chuyển trang
+                        setTimeout(() => {
+                            window.location.href = "https://thuvienphapluat.vn/hoi-dap-phap-luat/dieu-289-bo-luat-hinh-su-quy-dinh-toi-xam-nhap-trai-phep-vao-mang-may-tinh-mang-vien-thong-hoac-phu-138064776.html";
+                        }, 1000);
+                    }
+                }, 300); // Tốc độ chạy phần trăm
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

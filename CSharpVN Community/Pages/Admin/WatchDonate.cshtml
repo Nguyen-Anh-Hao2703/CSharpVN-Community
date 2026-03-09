@@ -1,0 +1,44 @@
+﻿@page
+@model CSharpVN_Community.WatchDonateModel
+@{
+    ViewData["Title"] = "Bảng điều khiển Admin";
+}
+
+<div class="container mt-4">
+    <h2 class="text-success border-bottom pb-2">📂 Nhật ký từ cộng đồng</h2>
+
+    @if (Model.DanhSachDongGop == null || !Model.DanhSachDongGop.Any())
+    {
+        <div class="alert alert-warning">Hiện chưa có dữ liệu đóng góp nào được ghi lại.</div>
+    }
+    else
+    {
+        @foreach (var item in Model.DanhSachDongGop)
+        {
+            <div class="card mb-4 shadow-sm" style="border-left: 5px solid #00ff00;">
+                <div class="card-header bg-dark text-white d-flex justify-content-between">
+                    <span>🕒 @item.ThoiGian</span>
+                    <span class="badge bg-success">C# Code</span>
+                </div>
+                <div class="card-body" style="background: #282a36;">
+                    <pre style="margin: 0;"><code style="color: #f8f8f2; font-family: 'Consolas', monospace;">@item.NoiDung</code></pre>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<style>
+    /* Làm cho thanh cuộn trong khối code đẹp hơn */
+    pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    .card-header {
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+</style>
