@@ -21,13 +21,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="Home">Trang chủ</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Home">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="Privacy">Điều khoản sử dụng</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Download_CSharpVN">Tải xuống</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="List">Danh sách package C#VN</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Điều khoản sử dụng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/List">Danh sách package C#VN</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Domain">Đóng góp</a>
@@ -47,11 +50,40 @@
     </div>
 
     <footer class="border-top footer text-muted">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Hệ sinh thái CSharpVN</h3>
+                <ul>
+                    <li><a href="https://www.nuget.org/">NuGet Packages</a></li>
+                    <li><a href="/Download_CSharpVN">CSharpVN Studio</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>C#VN so với các ngôn ngữ khác</h3>
+                <ul>
+                    <li><a href="https://visualstudio.microsoft.com/fr/vs/features/net-development/">Thư viện hệ thống C#</a></li>
+                    <li><a href="https://intex.edu.vn/robotics-va-python-dau-la-buoc-di-dau-tien-trong-hanh-trinh-hoc-lap-trinh-cho-tre/">Python cho Robotics</a></li>
+                    <li><a href="https://blog.28tech.com.vn/c">Lập trình C</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Hợp pháp</h3>
+                <ul>
+                    <li><a href="https://thuvienphapluat.vn/hoi-dap-phap-luat/dieu-289-bo-luat-hinh-su-quy-dinh-toi-xam-nhap-trai-phep-vao-mang-may-tinh-mang-vien-thong-hoac-phu-138064776.html">Chính sách bảo mật</a></li>
+                    <li><a href="/Privacy">Điều khoản sử dụng</a></li>
+                </ul>
+            </div>
+        </div>
+
         <div class="container">
-            &copy; 2026 - CSharpVN Community - <a asp-area="" asp-page="/Privacy">Điều khoản sử dụng</a>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CSharpVN Community. Designed by Nguyen Anh Hao. <a asp-area="" asp-page="/Privacy">Điều khoản sử dụng</a></p>
+            </div> 
         </div>
         <div class="server-status-box" style="background: #000; color: #00ff00; padding: 15px; border-radius: 10px; font-family: monospace; border: 2px solid #004400; display: inline-block; margin: 20px; box-shadow: 0 0 10px #002200;">
-            <h5 style="margin-top: 0; color: #00ff00; text-align: center; border-bottom: 1px solid #004400; pb-2;">🛰️ US SERVER TERMINAL</h5>
+            <h5 style="margin-top: 0; color: #00ff00; text-align: center; border-bottom: 1px solid #004400; pb-2;">🛰️ USA Main Server</h5>
 
             <div style="display: flex; align-items: center; gap: 20px;">
                 <div class="radar-clock" style="width: 120px; height: 120px; border: 3px solid #00ff00; border-radius: 50%; position: relative; background: radial-gradient(circle, #001100, #000000); box-shadow: inset 0 0 10px #00ff00;">
@@ -64,7 +96,7 @@
                 <div style="font-size: 0.85rem; line-height: 1.5;">
                     <div style="color: #888;">> LOCATION: OREGON, USA</div>
                     <div style="color: #888;">> STATUS: <span style="color: #00ff00; font-weight: bold;">ACTIVE</span></div>
-                    <div style="margin-top: 10px;">🕒 UTC: <span id="utc-digital" style="color: #fff;">00:00:00</span></div>
+                    <div style="margin-top: 10px;">🕒 USA: <span id="utc-digital" style="color: #fff;">00:00:00</span></div>
                     <div>🇻🇳 VN: <span id="vn-digital" style="color: #fff;">00:00:00</span></div>
                 </div>
             </div>
