@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MailKit.Net.Smtp;
 using MimeKit;
+using System.Threading.Tasks;
 
 namespace CSharpVN_Community.Pages
 {
@@ -13,14 +14,13 @@ namespace CSharpVN_Community.Pages
             ClientIP = Request.Headers["X-Forwarded-For"].FirstOrDefault()
                        ?? HttpContext.Connection.RemoteIpAddress?.ToString()
                        ?? "Unknown";
-            try
-            {
-                await SendSecurityAlert(ClientIP);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi gửi mail: " + ex.Message);
-            }
+            Task.Run(async () => {
+                try
+                {
+                    await SendSecurityAlert(ClientIP);
+                }
+                catch { /* Im lặng nếu lỗi để không treo máy */ }
+            });
         }
         public async Task SendSecurityAlert(string hackerIP)
         {
