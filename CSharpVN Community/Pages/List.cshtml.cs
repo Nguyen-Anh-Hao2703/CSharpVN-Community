@@ -37,6 +37,12 @@ namespace CSharpVN_Web.Pages
                     MoTa = "Các hàm toán học: Số nguyên tố, lũy thừa, căn bậc hai...",
                     LinkNuget = "https://www.nuget.org/packages/CSharpVN.System.Math",
                     Icon = "📐"
+                },
+                new PackageInfo {
+                    Ten = "CSharpVN.Language",
+                    MoTa = "Các hàm xử lí Ngôn ngữ...",
+                    LinkNuget = "https://www.nuget.org/packages/CSharpVN.Language",
+                    Icon = "🔤"
                 }
             };
         }
