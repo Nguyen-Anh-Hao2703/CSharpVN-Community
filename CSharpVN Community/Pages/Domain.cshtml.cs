@@ -1,21 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 
 namespace CSharpVN_Community.Pages
 {
     public class DomainModel : PageModel
     {
-        // Hàm này sẽ chạy khi người dùng nhấn nút "Gửi"
-        public void OnPost(string CodeHao)
+        private readonly Code _codeService;
+
+        public DomainModel(Code codeService) // Inject Class Code vào đây
         {
-            if (!string.IsNullOrEmpty(CodeHao))
+            _codeService = codeService;
+        }
+        // Hàm này sẽ chạy khi người dùng nhấn nút "Gửi"
+        public async void OnPost(string Code)
+        {
+            if (!string.IsNullOrEmpty(Code))
             {
-                // Cách 1: Lưu tạm vào một file .txt trên máy chủ của bạn
-                // Code này sẽ chạy được ở cả máy Hào và máy chủ bên Mỹ
-                string rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                string filePath = Path.Combine(rootPath, "DongGopCode.txt");
-                System.IO.File.AppendAllText(filePath, CodeHao + Environment.NewLine);
-                System.IO.File.AppendAllText(filePath, $"\n--- Đóng góp mới ({DateTime.Now}) ---\n" + CodeHao);
+                string time = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
+                await _codeService.GhiDuLieuLenCloud("Domain.txt", "------------------" + Environment.NewLine + time + Environment.NewLine + Code);
 
                 // Thông báo cho người dùng biết đã gửi thành công
                 ViewData["Message"] = "Chủ sở hữu đã nhận được code của bạn!";

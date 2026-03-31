@@ -1,5 +1,12 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Đăng ký Supabase Client (nếu Hào chưa làm)
+builder.Services.AddScoped(provider =>
+    new Supabase.Client(builder.Configuration["SupabaseUrl"], builder.Configuration["SupabaseKey"]));
+
+// Đăng ký Class Code của Hào
+builder.Services.AddScoped<CSharpVN_Community.Pages.Code>();
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSession();

@@ -7,24 +7,36 @@
 <div class="container mt-4">
     <h2 class="text-success border-bottom pb-2">📂 Nhật ký từ cộng đồng</h2>
 
-    @if (Model.DanhSachDongGop == null || !Model.DanhSachDongGop.Any())
+    @if (Model.code_đóng_góp == null || !Model.code_đóng_góp.Any() || Model.code_đóng_góp == "")
     {
         <div class="alert alert-warning">Hiện chưa có dữ liệu đóng góp nào được ghi lại.</div>
     }
     else
     {
-        @foreach (var item in Model.DanhSachDongGop)
-        {
-            <div class="card mb-4 shadow-sm" style="border-left: 5px solid #00ff00;">
-                <div class="card-header bg-dark text-white d-flex justify-content-between">
-                    <span>🕒 @item.ThoiGian</span>
-                    <span class="badge bg-success">C# Code</span>
-                </div>
-                <div class="card-body" style="background: #282a36;">
-                    <pre style="margin: 0;"><code style="color: #f8f8f2; font-family: 'Consolas', monospace;">@item.NoiDung</code></pre>
-                </div>
+        <div class="card mb-4 shadow-sm" style="border-left: 5px solid #00ff00;">
+            <div class="card-header bg-dark text-white d-flex justify-content-between">
+                <span class="badge bg-success">C# Code</span>
             </div>
-        }
+            <div class="card-body" style="background: #282a36;">
+                <pre style="margin: 0;"><code style="color: #f8f8f2; font-family: 'Consolas', monospace;">@Model.code_đóng_góp</code></pre>
+            </div>
+        </div>
+    }
+    <h2 class="text-success border-bottom pb-2">📂 Cảnh báo xâm nhập trái phép</h2>
+    @if (Model.cảnh_báo == null || !Model.cảnh_báo.Any() || Model.cảnh_báo == "")
+    {
+        <div class="alert alert-warning">Hiện chưa có ai xâm nhập trái phép.</div>
+    }
+    else
+    {
+        <div class="card mb-4 shadow-sm" style="border-left: 5px solid #00ff00;">
+            <div class="card-header bg-dark text-white d-flex justify-content-between">
+                <span class="badge bg-danger">Cảnh báo Xâm nhập</span>
+            </div>
+            <div class="card-body" style="background: #282a36;">
+                <pre style="margin: 0;"><code style="color: #f8f8f2; font-family: 'Consolas', monospace;">@Model.cảnh_báo</code></pre>
+            </div>
+        </div>
     }
 </div>
 
