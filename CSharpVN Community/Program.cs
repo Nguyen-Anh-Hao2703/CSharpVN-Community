@@ -1,8 +1,20 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Đăng ký Supabase Client (nếu Hào chưa làm)
+// Đăng ký Supabase Client với kiểm tra an toàn
 builder.Services.AddScoped(provider =>
-    new Supabase.Client(builder.Configuration["SupabaseUrl"], builder.Configuration["SupabaseKey"]));
+{
+    var url = builder.Configuration["SupabaseUrl"];
+    var key = builder.Configuration["SupabaseKey"];
+
+    if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(key))
+    {
+        // Thay vì để nó văng lỗi hệ thống, mình chủ động báo lỗi rõ ràng
+        throw new InvalidOperationException("Hào ơi, chưa có SupabaseUrl hoặc SupabaseKey trong cấu hình Render kìa!");
+    }
+
+    return new Supabase.Client(url, key, new Supabase.SupabaseOptions { AutoConnectRealtime = true });
+});
 
 // Đăng ký Class Code của Hào
 builder.Services.AddScoped<CSharpVN_Community.Pages.Code>();
