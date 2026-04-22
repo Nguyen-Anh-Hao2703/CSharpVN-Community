@@ -13,16 +13,20 @@ namespace CSharpVN_Community.Pages
             _codeService = codeService;
         }
         // Hàm này sẽ chạy khi người dùng nhấn nút "Gửi"
-        public async void OnPost(string Code)
+        public async Task<IActionResult> OnPostAsync(string Code) // Đổi tên thành OnPostAsync cho chuẩn
         {
             if (!string.IsNullOrEmpty(Code))
             {
                 string time = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
+
+                // Dùng await ở đây để chắc chắn dữ liệu đã lên tới Cloud
                 await _codeService.GhiDuLieuLenCloud("Domain.txt", "------------------" + Environment.NewLine + time + Environment.NewLine + Code);
 
-                // Thông báo cho người dùng biết đã gửi thành công
                 ViewData["Message"] = "Chủ sở hữu đã nhận được code của bạn!";
             }
+
+            // Trả về chính trang hiện tại sau khi xử lý xong
+            return Page();
         }
     }
 }
