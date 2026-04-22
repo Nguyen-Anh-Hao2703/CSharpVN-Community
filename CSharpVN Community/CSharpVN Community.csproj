@@ -15,8 +15,4 @@
     <PackageReference Include="Supabase" Version="1.1.1" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(ConfigurationName) == Debug (&#xD;&#xA;   git add .&#xD;&#xA;   git commit -m &quot;Auto-build Debug $(DateTime)&quot;&#xD;&#xA;   git push&#xD;&#xA;)" />
-  </Target>
-
 </Project>
