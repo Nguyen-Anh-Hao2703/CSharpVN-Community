@@ -25,4 +25,4 @@ git clone https://github.com
 
 ## 📄 Giấy phép
 
-Dự án này được cấp phép theo các điều khoản của [Giấy phép MIT](LICENSE).
+Dự án này được cấp phép theo các điều khoản của [Giấy phép Apache 2.0](LICENSE).
